@@ -1,0 +1,82 @@
+{
+  "name": "node-rsa",
+  "version": "2.0.0",
+  "description": "RSA library for Node.js and browsers",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.node.cjs",
+  "module": "./dist/index.node.js",
+  "browser": "./dist/index.browser.js",
+  "types": "./dist/index.node.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.node.d.ts",
+      "browser": {
+        "import": "./dist/index.browser.js"
+      },
+      "node": {
+        "import": "./dist/index.node.js",
+        "require": "./dist/index.node.cjs"
+      },
+      "default": "./dist/index.browser.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "MIGRATION.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "bench": "vitest bench --run --config=vitest.bench.config.ts",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run lint && npm run test && npm run build && npm run check:bundle-size",
+    "check:bundle-size": "node scripts/check-bundle-size.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rzcoder/node-rsa.git"
+  },
+  "keywords": [
+    "rsa",
+    "crypto",
+    "asymmetric",
+    "encryption",
+    "decryption",
+    "sign",
+    "verify",
+    "pkcs1",
+    "oaep",
+    "pss",
+    "typescript",
+    "browser"
+  ],
+  "author": "rzcoder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rzcoder/node-rsa/issues"
+  },
+  "homepage": "https://github.com/rzcoder/node-rsa",
+  "dependencies": {
+    "@noble/hashes": "^2.2.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.15",
+    "@types/node": "^22.10.0",
+    "chai": "^6.2.2",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.6"
+  }
+}
